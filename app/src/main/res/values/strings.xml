@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AlphaBitTask</string>
+    <string name="transaction_income">Получено</string>
+    <string name="transaction_outcome">Отправлено</string>
+    <string name="transaction_from">От: </string>
+    <string name="transaction_to">Кому: </string>
 </resources>
