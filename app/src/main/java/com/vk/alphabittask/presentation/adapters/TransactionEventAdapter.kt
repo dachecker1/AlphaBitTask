@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vk.alphabittask.R
-import com.vk.alphabittask.data.TransactionItemVO
+import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
 import com.vk.alphabittask.databinding.RvTransactionItemBinding
 import com.vk.alphabittask.presentation.adapters.diffutils.TransactionEventsDiffUtil
 

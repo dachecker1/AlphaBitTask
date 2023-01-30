@@ -1,7 +1,7 @@
 package com.vk.alphabittask.presentation.adapters.diffutils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.vk.alphabittask.data.TransactionItemVO
+import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
 
 class TransactionEventsDiffUtil : DiffUtil.ItemCallback<TransactionItemVO>() {
     override fun areItemsTheSame(oldItem: TransactionItemVO, newItem: TransactionItemVO): Boolean {

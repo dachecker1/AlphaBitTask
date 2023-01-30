@@ -33,6 +33,10 @@ class TransactionsEventsFragment : Fragment() {
         setupRecyclerView()
     }
 
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 
     private fun setupRecyclerView(){
         val rv = binding.rvTransactionEvents

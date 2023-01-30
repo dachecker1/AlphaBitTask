@@ -1,4 +1,4 @@
-package com.vk.alphabittask.data
+package com.vk.alphabittask.data.transaction.vo
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
