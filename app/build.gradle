@@ -60,9 +60,10 @@ dependencies {
 
     implementation "androidx.room:room-runtime:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
-    kapt "androidx.room:room-compiler:2.4.3"
 
     implementation 'com.google.code.gson:gson:2.10'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -80,5 +81,5 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
-    
+    implementation "androidx.paging:paging-runtime:3.2.0-alpha03"
 }
