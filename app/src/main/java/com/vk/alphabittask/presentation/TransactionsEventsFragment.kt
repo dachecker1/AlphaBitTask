@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.lifecycleScope
 import com.vk.alphabittask.databinding.FragmentTransactionEventsBinding
+import com.vk.alphabittask.presentation.adapters.BaseViewHolder
+import com.vk.alphabittask.presentation.adapters.IAdapterDelegate
+import com.vk.alphabittask.presentation.adapters.ListItemPagedDelegateAdapter
 import com.vk.alphabittask.presentation.adapters.TransactionEventAdapter
+import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
 import com.vk.alphabittask.presentation.view_models.TransactionEventsViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TransactionsEventsFragment : Fragment() {
@@ -16,13 +22,21 @@ class TransactionsEventsFragment : Fragment() {
     private val binding: FragmentTransactionEventsBinding
         get() = _binding ?: throw RuntimeException("FragmentTransactionEventsBinding is null")
 
-    private val viewModel : TransactionEventsViewModel by viewModel()
-    lateinit var transactionEventAdapter : TransactionEventAdapter
+    private val viewModel: TransactionEventsViewModel by viewModel()
+    lateinit var userEventsAdapter: ListItemPagedDelegateAdapter
+    var transactionAdapter: TransactionEventAdapter = TransactionEventAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        userEventsAdapter = ListItemPagedDelegateAdapter.Builder()
+            .add(transactionAdapter as IAdapterDelegate<BaseViewHolder<ListItemModel>, ListItemModel>)
+            .build()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentTransactionEventsBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -30,7 +44,7 @@ class TransactionsEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
+        subscribeViewModelEvents()
     }
 
     override fun onDestroy() {
@@ -38,10 +52,11 @@ class TransactionsEventsFragment : Fragment() {
         super.onDestroy()
     }
 
-    private fun setupRecyclerView(){
-        val rv = binding.rvTransactionEvents
-        transactionEventAdapter = TransactionEventAdapter()
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.adapter = transactionEventAdapter
+    private fun subscribeViewModelEvents() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.transactionEventsFlow.collectLatest { items ->
+                userEventsAdapter.submitData(items)
+            }
+        }
     }
 }

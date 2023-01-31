@@ -5,7 +5,7 @@ import com.vk.alphabittask.data.transaction.mapper.UserTransactionMapper
 import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
 
 class TransactionInteractor(
-    private val transactionRepository : TransactionRepository
+    private val transactionRepository: TransactionRepository,
 ) {
 
     suspend fun getTransactionEvents(
@@ -18,6 +18,6 @@ class TransactionInteractor(
     ): List<TransactionItemVO> {
         return transactionRepository.getTransactionEvents(
             module, action, address, page, offset, sort
-        ).map { UserTransactionMapper.transform(it )}
+        ).map { UserTransactionMapper.transform(it) }
     }
 }

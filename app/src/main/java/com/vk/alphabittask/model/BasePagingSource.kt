@@ -13,6 +13,7 @@ abstract class BasePagingSource<T : Any>(
 
     protected abstract suspend fun getItems(page: Int, requestLoaded: Int): List<T>
 
+    @androidx.paging.ExperimentalPagingApi
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
@@ -27,11 +28,11 @@ abstract class BasePagingSource<T : Any>(
             LoadResult.Page(
                 data = response,
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
-                nextKey = if(response.size < params.loadSize) null else position + (params.loadSize / pageSize)
+                nextKey = if (response.size < params.loadSize) null else position + (params.loadSize / pageSize)
             )
         } catch (exception: IOException) {
             LoadResult.Error(exception)
-        } catch (exception : HttpException) {
+        } catch (exception: HttpException) {
             LoadResult.Error(exception)
         }
     }

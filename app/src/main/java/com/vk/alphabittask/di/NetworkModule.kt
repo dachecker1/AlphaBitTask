@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.vk.alphabittask.data.repository.TransactionRepository
 import com.vk.alphabittask.domain.interactor.TransactionInteractor
+import com.vk.alphabittask.model.TransactionEventsDataSource
 import com.vk.alphabittask.network.IRestApi
 import com.vk.alphabittask.utils.Constants
 import okhttp3.OkHttpClient

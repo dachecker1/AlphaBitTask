@@ -3,9 +3,9 @@ package com.vk.alphabittask.data.transaction.mapper
 import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
 import com.vk.alphabittask.network.response.TransactionEvent
 
-object UserTransactionMapper {
+object UserTransactionMapper : BaseMapper<TransactionItemVO, TransactionEvent>() {
 
-    fun transform(item : TransactionEvent) : TransactionItemVO {
+    override fun transform(item: TransactionEvent): TransactionItemVO {
         return TransactionItemVO(
             blockHash = item.blockHash,
             blockNumber = item.blockNumber,
@@ -16,7 +16,7 @@ object UserTransactionMapper {
             contractAddress = item.contractAddress,
             to = item.to,
             value = item.value,
-            tokenName =  item.tokenName,
+            tokenName = item.tokenName,
             tokenDecimal = item.tokenDecimal,
             tokenSymbol = item.tokenSymbol,
             transactionIndex = item.transactionIndex,

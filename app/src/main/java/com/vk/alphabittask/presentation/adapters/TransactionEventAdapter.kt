@@ -9,7 +9,8 @@ import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
 import com.vk.alphabittask.databinding.RvTransactionItemBinding
 import com.vk.alphabittask.presentation.adapters.diffutils.TransactionEventsDiffUtil
 
-class TransactionEventAdapter : ListAdapter<TransactionItemVO, TransactionEventAdapter.ViewHolder>(TransactionEventsDiffUtil()) {
+//class TransactionEventAdapter : ListAdapter<TransactionItemVO, TransactionEventAdapter.ViewHolder>(TransactionEventsDiffUtil()) {
+class TransactionEventAdapter : IAdapterDelegate<TransactionEventAdapter.ViewHolder, TransactionItemVO> {
 
     class ViewHolder(private val binding: RvTransactionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -26,15 +27,13 @@ class TransactionEventAdapter : ListAdapter<TransactionItemVO, TransactionEventA
         return ViewHolder(RvTransactionItemBinding.bind(view))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val transactionItem = getItem(position)
-
+    override fun onBindViewHolder(holder: ViewHolder, item: TransactionItemVO) {
         holder.image.setImageResource(R.drawable.ic_arrow_up)
         holder.transactionTitle.text = holder.itemView.context.getString(R.string.transaction_outcome)
         val totalAmount = StringBuilder()
         totalAmount
             .append("~ $ ")
-            .append(transactionItem.value)
+            .append(item.value)
         holder.totalAmount.text = totalAmount.toString()
         val amountReceive = StringBuilder()
         if(true) { //TODO условие, по которому определять, входящий или исходящий платеж
@@ -43,21 +42,22 @@ class TransactionEventAdapter : ListAdapter<TransactionItemVO, TransactionEventA
             amountReceive.append("+ ")
         }
         amountReceive
-            .append(transactionItem.value)
+            .append(item.value)
             .append(" ")
-            .append(transactionItem.tokenSymbol)
+            .append(item.tokenSymbol)
         holder.transactionAmount.text = amountReceive.toString()
         val transactionReceiver = StringBuilder()
         if(true) {
             transactionReceiver
                 .append(holder.itemView.context.getString(R.string.transaction_from))
-                .append(transactionItem.from)
+                .append(item.from)
         } else {
             transactionReceiver
                 .append(holder.itemView.context.getString(R.string.transaction_to))
-                .append(transactionItem.to)
+                .append(item.to)
         }
         holder.transactionReceiver.text = transactionReceiver.toString()
-
     }
+
+    override fun onRecycled(holder: ViewHolder) {}
 }
