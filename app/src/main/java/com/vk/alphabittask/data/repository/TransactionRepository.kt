@@ -1,9 +1,11 @@
 package com.vk.alphabittask.data.repository
 
 import android.app.Application
+import com.vk.alphabittask.data.data_base.TransactionListDao
 import com.vk.alphabittask.data.data_base.TransactionsDataBase
 import com.vk.alphabittask.data.network.IRestApi
 import com.vk.alphabittask.data.network.response.TransactionEvent
+import com.vk.alphabittask.data.transaction.mapper.UserTransactionDataBaseMapper
 
 class TransactionRepository(
     private val mRestApi: IRestApi,
@@ -12,6 +14,20 @@ class TransactionRepository(
 
     private val transactionListDao by lazy {
         TransactionsDataBase.getInstance(application).transactionListDao()
+    }
+
+    suspend fun getTransactionEventFromDB(
+        page : Int,
+        offset: Int
+    ) : List<TransactionEvent> {
+        return transactionListDao.getTransactionPagedList(page, offset)
+            .map {
+                UserTransactionDataBaseMapper.transform(it)
+            }
+    }
+
+    suspend fun insertDataToDB() {
+//        transactionListDao.insert()
     }
 
     suspend fun getTransactionEvents(

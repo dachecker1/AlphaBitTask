@@ -2,6 +2,9 @@ package com.vk.alphabittask.domain.model
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okio.IOException
 import retrofit2.HttpException
 
@@ -24,7 +27,11 @@ abstract class BasePagingSource<T : Any>(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
         var position = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val response = getItems(position, params.loadSize)
+            val response = //getItems(position, params.loadSize)
+                withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                    val result = getItems(position, params.loadSize)
+                    result
+                }
             LoadResult.Page(
                 data = response,
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,

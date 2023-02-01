@@ -1,6 +1,5 @@
 package com.vk.alphabittask.domain.interactor
 
-import android.app.Application
 import com.vk.alphabittask.data.repository.TransactionRepository
 import com.vk.alphabittask.data.transaction.mapper.UserTransactionMapper
 import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
@@ -9,7 +8,13 @@ class TransactionInteractor(
     private val transactionRepository: TransactionRepository,
 ) {
 
-
+    suspend fun getTransactionEventsFromDB(
+        page: Int,
+        offset: Int
+    ) : List<TransactionItemVO> {
+        return transactionRepository.getTransactionEventFromDB(page, offset)
+            .map { UserTransactionMapper.transform(it) }
+    }
 
     suspend fun getTransactionEvents(
         module: String,
