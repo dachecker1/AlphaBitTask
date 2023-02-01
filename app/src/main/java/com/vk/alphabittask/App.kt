@@ -1,6 +1,7 @@
 package com.vk.alphabittask
 
 import android.app.Application
+import com.vk.alphabittask.di.appDispatchers
 import com.vk.alphabittask.di.appModule
 import com.vk.alphabittask.di.networkModule
 import org.koin.android.BuildConfig
@@ -20,7 +21,7 @@ class App : Application() {
         startKoin {
             androidLogger(if(BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@App)
-            modules(networkModule, appModule)
+            modules(networkModule, appModule, appDispatchers)
         }
     }
 }

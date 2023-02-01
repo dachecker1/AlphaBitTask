@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "transactionList")
 data class ItemTransactionDbModel(
     @PrimaryKey(autoGenerate = true)
-    val id : Int,
+    val id : Int?,
     @ColumnInfo(name = "blockNumber")
     val blockNumber : String,
     @ColumnInfo(name = "timeStamp")

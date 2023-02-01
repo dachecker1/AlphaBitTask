@@ -19,7 +19,8 @@ class TransactionEventsDataSource(
             page,
             offset
         ).toMutableList()
-
+        //TODO фиксануть БД, понаписал туда дублей
+        //TODO чтение из БД идет некорректное, возвращается только первый элемент. Разобраться почему
         if (list.isEmpty()) {
             list = transactionInteractor.getTransactionEvents(
                 module = module,
@@ -29,6 +30,7 @@ class TransactionEventsDataSource(
                 offset = offset,
                 sort = sort
             ).toMutableList()
+            transactionInteractor.insertDataToDB(list.toList())
         }
         return list
     }

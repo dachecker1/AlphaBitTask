@@ -10,6 +10,7 @@ import com.vk.alphabittask.data.network.IRestApi
 import com.vk.alphabittask.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,7 +21,7 @@ val networkModule = module {
     single { getGson() }
 
     single { TransactionInteractor(get()) }
-    single { TransactionRepository(get(), get()) }
+    single { TransactionRepository(get(), get(), get(named("IODispatcher"))) }
 }
 
 fun getGson(): Gson = GsonBuilder().setLenient().create()

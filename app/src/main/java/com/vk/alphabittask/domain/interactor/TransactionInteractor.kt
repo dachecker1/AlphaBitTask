@@ -3,6 +3,7 @@ package com.vk.alphabittask.domain.interactor
 import com.vk.alphabittask.data.repository.TransactionRepository
 import com.vk.alphabittask.data.transaction.mapper.UserTransactionMapper
 import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
+import com.vk.alphabittask.domain.model.ListItemModel
 
 class TransactionInteractor(
     private val transactionRepository: TransactionRepository,
@@ -14,6 +15,10 @@ class TransactionInteractor(
     ) : List<TransactionItemVO> {
         return transactionRepository.getTransactionEventFromDB(page, offset)
             .map { UserTransactionMapper.transform(it) }
+    }
+
+    suspend fun insertDataToDB(list: List<ListItemModel>) {
+        transactionRepository.insertDataToDB(list)
     }
 
     suspend fun getTransactionEvents(

@@ -1,15 +1,19 @@
 package com.vk.alphabittask.data.repository
 
 import android.app.Application
-import com.vk.alphabittask.data.data_base.TransactionListDao
 import com.vk.alphabittask.data.data_base.TransactionsDataBase
 import com.vk.alphabittask.data.network.IRestApi
 import com.vk.alphabittask.data.network.response.TransactionEvent
 import com.vk.alphabittask.data.transaction.mapper.UserTransactionDataBaseMapper
+import com.vk.alphabittask.domain.model.ListItemModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 class TransactionRepository(
     private val mRestApi: IRestApi,
-    private val application : Application
+    private val application : Application,
+    private val dispatcherIO : CoroutineDispatcher
 ) {
 
     private val transactionListDao by lazy {
@@ -26,8 +30,14 @@ class TransactionRepository(
             }
     }
 
-    suspend fun insertDataToDB() {
-//        transactionListDao.insert()
+    suspend fun insertDataToDB(list: List<ListItemModel>) {
+        CoroutineScope(dispatcherIO).launch {
+            list.forEach {
+                transactionListDao.insert(
+                    UserTransactionDataBaseMapper.transform(it)
+                )
+            }
+        }
     }
 
     suspend fun getTransactionEvents(
