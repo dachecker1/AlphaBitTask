@@ -11,6 +11,7 @@ import com.vk.alphabittask.model.TransactionEventsDataSource
 import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 
 class TransactionEventsViewModel(
     private val transactionInteractor: TransactionInteractor,
@@ -38,6 +39,14 @@ class TransactionEventsViewModel(
             }
         )
             .flow
+            .map {
+                saveToBD(it)
+                it
+            }
             .catch { }
             .cachedIn(viewModelScope)
+
+    private fun saveToBD(pagingData: PagingData<ListItemModel>) {
+
+    }
 }

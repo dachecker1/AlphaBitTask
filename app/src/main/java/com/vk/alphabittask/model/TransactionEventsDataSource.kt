@@ -15,6 +15,11 @@ class TransactionEventsDataSource(
 ) : BasePagingSource<ListItemModel>(PAGE_SIZE) {
 
     override suspend fun getItems(page: Int, requestLoaded: Int): List<ListItemModel> {
+        if(true) {
+            //проверить локальную базу. если в базе есть эта страница, то сетевой запрос не выполняем
+        } else {
+            // вызываем transactionInteractor.getTransactionEvents()
+        }
         val list: MutableList<ListItemModel> = transactionInteractor.getTransactionEvents(
             module = module,
             action = action,

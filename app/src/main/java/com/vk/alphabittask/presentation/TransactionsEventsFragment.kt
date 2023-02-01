@@ -23,8 +23,8 @@ class TransactionsEventsFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentTransactionEventsBinding is null")
 
     private val viewModel: TransactionEventsViewModel by viewModel()
-    lateinit var userEventsAdapter: ListItemPagedDelegateAdapter
-    var transactionAdapter: TransactionEventAdapter = TransactionEventAdapter()
+    private var userEventsAdapter: ListItemPagedDelegateAdapter? =  null
+    private var transactionAdapter: TransactionEventAdapter? = TransactionEventAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,18 +44,21 @@ class TransactionsEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rvTransactionEvents.adapter = userEventsAdapter
         subscribeViewModelEvents()
     }
 
     override fun onDestroy() {
         _binding = null
+        userEventsAdapter = null
+        transactionAdapter = null
         super.onDestroy()
     }
 
     private fun subscribeViewModelEvents() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.transactionEventsFlow.collectLatest { items ->
-                userEventsAdapter.submitData(items)
+                userEventsAdapter?.submitData(items)
             }
         }
     }

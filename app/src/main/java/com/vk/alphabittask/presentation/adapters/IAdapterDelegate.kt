@@ -10,4 +10,5 @@ interface IAdapterDelegate<VH: RecyclerView.ViewHolder, T> {
 
     fun onRecycled(holder : VH)
 
+    fun isForViewType(item: Any): Boolean
 }
