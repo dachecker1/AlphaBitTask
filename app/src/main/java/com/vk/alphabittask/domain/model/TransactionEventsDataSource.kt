@@ -1,5 +1,6 @@
 package com.vk.alphabittask.domain.model
 
+import com.vk.alphabittask.data.data_base.TransactionsDataBase
 import com.vk.alphabittask.domain.interactor.TransactionInteractor
 
 private const val STARTING_PAGE_INDEX = 1

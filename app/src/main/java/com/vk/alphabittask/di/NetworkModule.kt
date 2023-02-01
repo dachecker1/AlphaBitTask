@@ -20,7 +20,7 @@ val networkModule = module {
     single { getGson() }
 
     single { TransactionInteractor(get()) }
-    single { TransactionRepository(get()) }
+    single { TransactionRepository(get(), get()) }
 }
 
 fun getGson(): Gson = GsonBuilder().setLenient().create()
