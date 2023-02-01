@@ -1,4 +1,4 @@
-package com.vk.alphabittask.network.response
+package com.vk.alphabittask.data.network.response
 
 import com.google.gson.annotations.SerializedName
 

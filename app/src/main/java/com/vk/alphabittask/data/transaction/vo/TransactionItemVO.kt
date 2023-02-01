@@ -1,8 +1,8 @@
 package com.vk.alphabittask.data.transaction.vo
 
 import android.os.Parcelable
-import com.vk.alphabittask.presentation.adapters.diffutils.EqualityFunction
-import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
+import com.vk.alphabittask.domain.model.EqualityFunction
+import com.vk.alphabittask.domain.model.ListItemModel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import com.vk.alphabittask.domain.model.IAdapterDelegate
 
 abstract class BaseAdapterDelegate<VH : BaseViewHolder<T>, T> : IAdapterDelegate<VH, T> {
 

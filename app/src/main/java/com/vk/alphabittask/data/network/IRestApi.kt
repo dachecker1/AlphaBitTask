@@ -1,6 +1,6 @@
-package com.vk.alphabittask.network
+package com.vk.alphabittask.data.network
 
-import com.vk.alphabittask.network.response.TransactionListResponse
+import com.vk.alphabittask.data.network.response.TransactionListResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

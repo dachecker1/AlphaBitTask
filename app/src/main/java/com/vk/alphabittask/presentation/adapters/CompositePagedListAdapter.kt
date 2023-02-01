@@ -4,6 +4,7 @@ import android.util.SparseArray
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.vk.alphabittask.domain.model.IAdapterDelegate
 import com.vk.alphabittask.presentation.adapters.diffutils.DiffItemCallback
 
 open class CompositePagedListAdapter<T: Any, VH : BaseViewHolder<T>>

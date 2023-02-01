@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.vk.alphabittask.databinding.FragmentTransactionEventsBinding
 import com.vk.alphabittask.presentation.adapters.BaseViewHolder
-import com.vk.alphabittask.presentation.adapters.IAdapterDelegate
+import com.vk.alphabittask.domain.model.IAdapterDelegate
 import com.vk.alphabittask.presentation.adapters.ListItemPagedDelegateAdapter
 import com.vk.alphabittask.presentation.adapters.TransactionEventAdapter
-import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
+import com.vk.alphabittask.domain.model.ListItemModel
 import com.vk.alphabittask.presentation.view_models.TransactionEventsViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

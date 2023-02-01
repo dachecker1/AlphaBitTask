@@ -1,7 +1,7 @@
 package com.vk.alphabittask.data.transaction.mapper
 
 import com.vk.alphabittask.data.transaction.vo.TransactionItemVO
-import com.vk.alphabittask.network.response.TransactionEvent
+import com.vk.alphabittask.data.network.response.TransactionEvent
 
 object UserTransactionMapper : BaseMapper<TransactionItemVO, TransactionEvent>() {
 

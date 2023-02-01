@@ -2,7 +2,8 @@ package com.vk.alphabittask.presentation.adapters
 
 import android.util.SparseArray
 import androidx.recyclerview.widget.DiffUtil
-import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
+import com.vk.alphabittask.domain.model.IAdapterDelegate
+import com.vk.alphabittask.domain.model.ListItemModel
 
 open class ListItemPagedDelegateAdapter constructor(
     typeToAdapterMap: SparseArray<IAdapterDelegate<BaseViewHolder<ListItemModel>, ListItemModel>>,

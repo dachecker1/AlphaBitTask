@@ -1,6 +1,7 @@
 package com.vk.alphabittask.presentation.adapters.diffutils
 
 import androidx.recyclerview.widget.DiffUtil
+import com.vk.alphabittask.domain.model.EqualityFunction
 
 class DiffItemCallback<T> (
     var mIdentityEqualityFunction: EqualityFunction<in T>,

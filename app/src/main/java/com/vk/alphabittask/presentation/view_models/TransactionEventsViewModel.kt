@@ -7,8 +7,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.vk.alphabittask.domain.interactor.TransactionInteractor
-import com.vk.alphabittask.model.TransactionEventsDataSource
-import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
+import com.vk.alphabittask.domain.model.TransactionEventsDataSource
+import com.vk.alphabittask.domain.model.ListItemModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map

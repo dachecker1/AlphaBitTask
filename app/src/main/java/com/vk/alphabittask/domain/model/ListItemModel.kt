@@ -1,4 +1,4 @@
-package com.vk.alphabittask.presentation.adapters.diffutils
+package com.vk.alphabittask.domain.model
 
 interface ListItemModel {
     val identityEquality: EqualityFunction<ListItemModel>

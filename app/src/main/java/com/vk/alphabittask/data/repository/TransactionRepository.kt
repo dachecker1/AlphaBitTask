@@ -1,7 +1,7 @@
 package com.vk.alphabittask.data.repository
 
-import com.vk.alphabittask.network.IRestApi
-import com.vk.alphabittask.network.response.TransactionEvent
+import com.vk.alphabittask.data.network.IRestApi
+import com.vk.alphabittask.data.network.response.TransactionEvent
 
 class TransactionRepository(
     private val mRestApi: IRestApi,

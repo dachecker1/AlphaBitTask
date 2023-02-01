@@ -1,4 +1,4 @@
-package com.vk.alphabittask.model
+package com.vk.alphabittask.domain.model
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

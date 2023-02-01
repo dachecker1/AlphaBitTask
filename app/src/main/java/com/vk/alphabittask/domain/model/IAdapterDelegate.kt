@@ -1,4 +1,4 @@
-package com.vk.alphabittask.presentation.adapters
+package com.vk.alphabittask.domain.model
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

@@ -1,7 +1,6 @@
-package com.vk.alphabittask.model
+package com.vk.alphabittask.domain.model
 
 import com.vk.alphabittask.domain.interactor.TransactionInteractor
-import com.vk.alphabittask.presentation.adapters.diffutils.ListItemModel
 
 private const val STARTING_PAGE_INDEX = 1
 
